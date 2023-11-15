@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block section %}
+    <div style="display: flex;">
+        <h2>Profesor</h2>
+        <a class="btn btn-success" href="{% url "profesor-create" %}" style="margin-left: 850px;">Agregar</a>
+    </div>
+    <hr>
+{% endblock section %}
+
+{% block maincontent %}
+<div class="row">
+    {% for profesor in profesor_list %}
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header" style="font-weight: bold;">
+                    Profesor {{ profesor.nombre }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" style="font-weight: bold;">Detalles</h5>
+                    <br><br>
+                    <ul>
+                        <li>
+                            <div style="display: flex;">
+                                <span style="font-weight: bold;">Correo:</span>
+                                <p class="card-text" style="margin-left: 10px;">{{ profesor.correo }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;">
+                                <span style="font-weight: bold;">Dirección:</span>
+                                <p class="card-text" style="margin-left: 10px;">{{ profesor.direccion }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="display: flex;">
+                                <span style="font-weight: bold;">Celular:</span>
+                                <p class="card-text" style="margin-left: 10px;">{{ profesor.celular }}</p>
+                            </div>
+                            
+                        </li>
+                    </ul>
+                    <hr>
+                    <a class="btn btn-primary" href="{% url 'profesor-update' profesor.id %}">Edit</a>
+                    <a class="btn btn-danger" href="{% url 'profesor-delete' profesor.id %}">Delete</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock maincontent %}
